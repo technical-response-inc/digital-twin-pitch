@@ -27,6 +27,9 @@
     --text-primary: #FFFFFF;
     --text-secondary: #9BB8DA;
     --text-body: #C8D6E5;
+    --green: #34D399;
+    --purple: #A78BFA;
+    --cyan: #22D3EE;
   }
 
   html { font-size: 16px; scroll-behavior: smooth; }
@@ -41,15 +44,12 @@
 
   #root { height: 100%; width: 100%; }
 
-  /* ---- Noise overlay ---- */
   .noise-overlay {
     position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.03;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 256px 256px;
+    background-repeat: repeat; background-size: 256px 256px;
   }
 
-  /* ---- Grid background ---- */
   .grid-bg {
     position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04;
     background-image:
@@ -58,13 +58,8 @@
     background-size: 60px 60px;
   }
 
-  /* ---- Animations ---- */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
   }
   @keyframes fadeIn {
@@ -79,41 +74,11 @@
     from { opacity: 0; transform: translateX(-60px); }
     to { opacity: 1; transform: translateX(0); }
   }
-  @keyframes slideInRight {
-    from { opacity: 0; transform: translateX(60px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes glowPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(217,95,0,0.15); }
-    50% { box-shadow: 0 0 40px rgba(217,95,0,0.35); }
-  }
-  @keyframes countUp {
-    from { opacity: 0; transform: translateY(20px) scale(0.8); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  @keyframes drawLine {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-  @keyframes floatSlow {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes expandWidth {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
 
   .animate-in { animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
-  .animate-in-down { animation: fadeInDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
   .animate-fade { animation: fadeIn 0.8s ease forwards; opacity: 0; }
   .animate-scale { animation: scaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
   .animate-left { animation: slideInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
-  .animate-right { animation: slideInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
 
   .delay-1 { animation-delay: 0.1s; }
   .delay-2 { animation-delay: 0.2s; }
@@ -123,8 +88,8 @@
   .delay-6 { animation-delay: 0.8s; }
   .delay-7 { animation-delay: 0.95s; }
   .delay-8 { animation-delay: 1.1s; }
+  .delay-9 { animation-delay: 1.25s; }
 
-  /* ---- Slide container ---- */
   .slide-container {
     position: relative; width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
@@ -136,11 +101,9 @@
     position: relative; z-index: 1;
   }
 
-  /* ---- Typography ---- */
   .font-display { font-family: 'DM Serif Display', serif; }
   .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-  /* ---- Section label ---- */
   .section-label {
     display: inline-flex; align-items: center; gap: 10px;
     font-family: 'JetBrains Mono', monospace;
@@ -153,7 +116,6 @@
     background: var(--amber); border-radius: 2px;
   }
 
-  /* ---- Stat cards ---- */
   .stat-card {
     background: linear-gradient(135deg, rgba(26,63,122,0.4), rgba(15,45,94,0.6));
     border: 1px solid rgba(59,139,235,0.15);
@@ -181,14 +143,11 @@
     font-weight: 600; font-size: 0.85rem; color: var(--text-primary);
     letter-spacing: 0.02em; margin-bottom: 4px;
   }
-  .stat-sub {
-    font-size: 0.75rem; color: var(--slate); font-style: italic;
-  }
+  .stat-sub { font-size: 0.75rem; color: var(--slate); font-style: italic; }
 
-  /* ---- Problem items ---- */
   .problem-item {
     display: flex; align-items: flex-start; gap: 16px;
-    padding: 18px 24px; border-radius: 12px;
+    padding: 14px 20px; border-radius: 12px;
     background: linear-gradient(135deg, rgba(217,95,0,0.06), transparent);
     border-left: 3px solid var(--amber);
     transition: background 0.3s ease, transform 0.2s ease;
@@ -200,6 +159,77 @@
   .problem-arrow {
     color: var(--amber); font-weight: 700; font-size: 1.1rem;
     flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ---- Lifecycle quadrant cards ---- */
+  .quad-card {
+    position: relative; padding: 24px; border-radius: 16px;
+    background: linear-gradient(145deg, rgba(26,63,122,0.3), rgba(11,29,58,0.8));
+    border: 1px solid rgba(59,139,235,0.12);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden; cursor: pointer;
+  }
+  .quad-card:hover {
+    border-color: rgba(59,139,235,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .quad-card.active {
+    border-color: var(--amber);
+    box-shadow: 0 0 30px rgba(217,95,0,0.12);
+  }
+  .quad-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 6px;
+  }
+  .quad-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .quad-title {
+    font-family: 'DM Serif Display', serif; font-size: 1.15rem;
+  }
+  .quad-subtitle {
+    font-size: 0.78rem; color: var(--slate); font-style: italic; margin-bottom: 12px; padding-left: 52px;
+  }
+  .quad-bullets {
+    padding-left: 52px;
+  }
+  .quad-bullets li {
+    font-size: 0.82rem; color: var(--text-body); line-height: 1.7;
+    list-style: none; position: relative; padding-left: 14px;
+  }
+  .quad-bullets li::before {
+    content: '\2022'; position: absolute; left: 0; color: var(--amber);
+  }
+
+  /* ---- Connector arrows ---- */
+  .lifecycle-flow {
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    margin-bottom: 28px;
+  }
+  .flow-step {
+    padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.82rem;
+    letter-spacing: 0.03em; cursor: pointer; transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+  .flow-step:hover { transform: translateY(-2px); }
+  .flow-arrow { color: var(--slate); font-size: 0.9rem; }
+
+  /* ---- Stack items ---- */
+  .stack-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 16px; border-radius: 10px;
+    background: linear-gradient(135deg, rgba(26,63,122,0.25), rgba(11,29,58,0.5));
+    border: 1px solid rgba(59,139,235,0.08);
+    transition: all 0.3s ease;
+  }
+  .stack-item:hover {
+    border-color: rgba(59,139,235,0.2);
+    transform: translateX(4px);
+  }
+  .stack-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
   }
 
   /* ---- Feature cards ---- */
@@ -215,13 +245,6 @@
     transform: translateY(-6px);
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   }
-  .feature-card::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%; opacity: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59,139,235,0.08), transparent 60%);
-    transition: opacity 0.3s ease;
-  }
-  .feature-card:hover::before { opacity: 1; }
   .feature-icon {
     width: 48px; height: 48px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
@@ -265,15 +288,11 @@
     border-color: transparent;
   }
   .biz-layer-title {
-    font-family: 'DM Serif Display', serif; font-size: 1.1rem;
-    flex: 1;
+    font-family: 'DM Serif Display', serif; font-size: 1.1rem; flex: 1;
   }
-  .biz-layer-subtitle {
-    font-size: 0.8rem; color: var(--slate);
-  }
+  .biz-layer-subtitle { font-size: 0.8rem; color: var(--slate); }
   .biz-layer-chevron {
-    font-size: 1rem; color: var(--slate);
-    transition: transform 0.3s ease;
+    font-size: 1rem; color: var(--slate); transition: transform 0.3s ease;
   }
   .biz-layer.active .biz-layer-chevron { transform: rotate(180deg); color: var(--amber); }
   .biz-layer-content {
@@ -281,12 +300,9 @@
     transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .biz-layer.active .biz-layer-content { max-height: 600px; }
-  .biz-layer-body {
-    padding: 0 24px 24px 76px;
-  }
+  .biz-layer-body { padding: 0 24px 24px 76px; }
   .biz-layer-body p {
-    font-size: 0.88rem; line-height: 1.7; color: var(--text-body);
-    margin-bottom: 12px;
+    font-size: 0.88rem; line-height: 1.7; color: var(--text-body); margin-bottom: 12px;
   }
   .biz-layer-body .bullet {
     display: flex; gap: 10px; margin-bottom: 8px;
@@ -294,9 +310,8 @@
   }
   .biz-layer-body .bullet-icon { color: var(--amber); flex-shrink: 0; margin-top: 2px; }
 
-  /* ---- Why now items ---- */
   .why-item {
-    display: flex; gap: 20px; padding: 20px 0;
+    display: flex; gap: 20px; padding: 18px 0;
     border-bottom: 1px solid rgba(59,139,235,0.08);
   }
   .why-item:last-child { border-bottom: none; }
@@ -305,15 +320,9 @@
     background: var(--amber); flex-shrink: 0; margin-top: 6px;
     box-shadow: 0 0 16px rgba(217,95,0,0.4);
   }
-  .why-title {
-    font-weight: 600; color: var(--text-primary); margin-bottom: 6px;
-    font-size: 0.95rem;
-  }
-  .why-desc {
-    font-size: 0.88rem; line-height: 1.65; color: var(--text-body);
-  }
+  .why-title { font-weight: 600; color: var(--text-primary); margin-bottom: 6px; font-size: 0.95rem; }
+  .why-desc { font-size: 0.88rem; line-height: 1.65; color: var(--text-body); }
 
-  /* ---- GTM steps ---- */
   .gtm-step {
     display: flex; gap: 20px; align-items: flex-start;
     padding: 20px 24px; border-radius: 14px;
@@ -331,7 +340,6 @@
     line-height: 1; flex-shrink: 0; width: 40px;
   }
 
-  /* ---- Progress bar ---- */
   .progress-bar {
     position: fixed; top: 0; left: 0; height: 3px; z-index: 100;
     background: linear-gradient(90deg, var(--amber), var(--amber-light));
@@ -339,10 +347,9 @@
     box-shadow: 0 0 12px rgba(217,95,0,0.5);
   }
 
-  /* ---- Nav dots ---- */
   .nav-dots {
     position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 12px; z-index: 100;
+    display: flex; flex-direction: column; gap: 10px; z-index: 100;
   }
   .nav-dot {
     width: 10px; height: 10px; border-radius: 50%;
@@ -355,8 +362,7 @@
     transform: scale(1.3);
   }
   .nav-dot:hover:not(.active) {
-    background: rgba(155,184,218,0.5);
-    transform: scale(1.15);
+    background: rgba(155,184,218,0.5); transform: scale(1.15);
   }
   .nav-dot-label {
     position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
@@ -366,7 +372,6 @@
   }
   .nav-dot:hover .nav-dot-label { opacity: 1; }
 
-  /* ---- Bottom nav ---- */
   .bottom-nav {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
@@ -400,11 +405,9 @@
   }
   .slide-counter {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem; color: var(--slate);
-    letter-spacing: 0.1em;
+    font-size: 0.75rem; color: var(--slate); letter-spacing: 0.1em;
   }
 
-  /* ---- Callout box ---- */
   .callout {
     padding: 20px 24px; border-radius: 14px; margin-top: 24px;
     background: linear-gradient(135deg, rgba(217,95,0,0.08), rgba(217,95,0,0.03));
@@ -415,16 +418,12 @@
     font-size: 0.65rem; letter-spacing: 0.15em;
     color: var(--amber); text-transform: uppercase; margin-bottom: 8px;
   }
-  .callout p {
-    font-size: 0.9rem; line-height: 1.7; color: var(--text-body);
-  }
+  .callout p { font-size: 0.9rem; line-height: 1.7; color: var(--text-body); }
 
-  /* ---- Endgame ---- */
   .endgame-quote {
     font-family: 'DM Serif Display', serif;
     font-size: 1.8rem; line-height: 1.4;
-    color: var(--text-primary); position: relative;
-    padding-left: 28px;
+    color: var(--text-primary); position: relative; padding-left: 28px;
   }
   .endgame-quote::before {
     content: ''; position: absolute; left: 0; top: 0; bottom: 0;
@@ -432,19 +431,16 @@
     background: linear-gradient(to bottom, var(--amber), var(--amber-light));
   }
 
-  /* ---- Revenue highlight ---- */
   .revenue-highlight {
     display: inline-block; padding: 3px 12px; border-radius: 6px;
     background: rgba(217,95,0,0.15); color: var(--amber-light);
     font-family: 'JetBrains Mono', monospace; font-weight: 500;
   }
 
-  /* ---- Scrollbar ---- */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(155,184,218,0.2); border-radius: 4px; }
 
-  /* ---- Responsive ---- */
   @media (max-width: 768px) {
     .slide-container { padding: 30px 24px 80px; }
     .stat-number { font-size: 2.2rem; }
@@ -460,12 +456,13 @@
 <script type="text/babel">
 const { useState, useEffect, useCallback, useRef } = React;
 
-// ─── Slide Data ───
 const SLIDES = [
   { id: 'hero', label: 'Cover' },
   { id: 'opportunity', label: 'Opportunity' },
   { id: 'problem', label: 'Problem' },
-  { id: 'solution', label: 'Solution' },
+  { id: 'lifecycle', label: 'Lifecycle' },
+  { id: 'factory-memory', label: 'Factory Memory' },
+  { id: 'deploy', label: 'What We Deploy' },
   { id: 'why-now', label: 'Why Now' },
   { id: 'business-model', label: 'Business Model' },
   { id: 'gtm', label: 'Go-To-Market' },
@@ -476,34 +473,24 @@ const SLIDES = [
 function AnimatedNumber({ value, prefix = '', suffix = '', delay = 0 }) {
   const [display, setDisplay] = useState(0);
   const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setStarted(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
+  useEffect(() => { const t = setTimeout(() => setStarted(true), delay); return () => clearTimeout(t); }, [delay]);
   useEffect(() => {
     if (!started) return;
     const num = parseFloat(value.replace(/[^0-9.]/g, ''));
     if (isNaN(num)) { setDisplay(value); return; }
-    const duration = 1200;
-    const steps = 40;
-    const stepTime = duration / steps;
-    let step = 0;
+    let step = 0; const steps = 40;
     const interval = setInterval(() => {
       step++;
-      const progress = step / steps;
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const eased = 1 - Math.pow(1 - step / steps, 3);
       setDisplay(Math.round(num * eased));
       if (step >= steps) { setDisplay(num); clearInterval(interval); }
-    }, stepTime);
+    }, 30);
     return () => clearInterval(interval);
   }, [started, value]);
-
   return <span>{prefix}{started ? display : 0}{suffix}</span>;
 }
 
-// ─── Hero Slide ───
+// ═══════════════════ SLIDE 1: HERO ═══════════════════
 function HeroSlide() {
   return (
     <div className="slide-container" style={{ background: 'radial-gradient(ellipse at 30% 40%, rgba(26,63,122,0.4), transparent 70%)' }}>
@@ -530,27 +517,33 @@ function HeroSlide() {
         </h1>
 
         <p className="animate-in delay-3" style={{
-          fontSize: '1.15rem', color: 'var(--slate)', maxWidth: 600,
-          margin: '0 auto 40px', lineHeight: 1.7, fontStyle: 'italic'
+          fontSize: '1.1rem', color: 'var(--slate)', maxWidth: 640,
+          margin: '0 auto 36px', lineHeight: 1.7, fontStyle: 'italic'
         }}>
-          AI-native operational intelligence for small and mid-size factories — deployed in weeks, not years.
+          Design. Build. Simulate. Operate. &mdash; A full-lifecycle AI platform for the other 98% of manufacturers.
         </p>
 
-        <div className="animate-in delay-5" style={{ display: 'flex', justifyContent: 'center', gap: 40, flexWrap: 'wrap' }}>
-          {[
-            { icon: '&#9881;', text: 'Factory Intelligence' },
-            { icon: '&#9889;', text: 'Real-Time AI' },
-            { icon: '&#9878;', text: 'SMB-First' }
-          ].map((item, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-              <span style={{ fontSize: '1.1rem', color: 'var(--amber)' }} dangerouslySetInnerHTML={{ __html: item.icon }} />
-              {item.text}
-            </div>
+        <div className="animate-in delay-5" style={{
+          display: 'flex', justifyContent: 'center', gap: 8, flexWrap: 'wrap'
+        }}>
+          {['Design', 'Build', 'Simulate', 'Operate'].map((step, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <span style={{ color: 'var(--slate)', fontSize: '0.85rem', alignSelf: 'center' }}>&rarr;</span>}
+              <div style={{
+                padding: '8px 20px', borderRadius: 8,
+                background: i === 0 ? 'rgba(52,211,153,0.12)' : i === 1 ? 'rgba(59,139,235,0.12)' : i === 2 ? 'rgba(167,139,250,0.12)' : 'rgba(217,95,0,0.12)',
+                border: `1px solid ${i === 0 ? 'rgba(52,211,153,0.3)' : i === 1 ? 'rgba(59,139,235,0.3)' : i === 2 ? 'rgba(167,139,250,0.3)' : 'rgba(217,95,0,0.3)'}`,
+                color: i === 0 ? 'var(--green)' : i === 1 ? 'var(--blue-glow)' : i === 2 ? 'var(--purple)' : 'var(--amber-light)',
+                fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.03em'
+              }}>
+                {step}
+              </div>
+            </React.Fragment>
           ))}
         </div>
 
         <div className="animate-fade delay-7" style={{
-          marginTop: 60, color: 'var(--slate)', fontSize: '0.75rem',
+          marginTop: 56, color: 'var(--slate)', fontSize: '0.75rem',
           fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.1em'
         }}>
           USE ARROW KEYS OR CLICK BELOW TO NAVIGATE
@@ -560,23 +553,19 @@ function HeroSlide() {
   );
 }
 
-// ─── Opportunity Slide ───
+// ═══════════════════ SLIDE 2: OPPORTUNITY ═══════════════════
 function OpportunitySlide() {
   return (
     <div className="slide-container">
       <div className="slide-inner">
         <div className="section-label animate-in">The Opportunity</div>
-
-        <p className="animate-in delay-2" style={{
-          fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--text-body)',
-          maxWidth: 800, marginBottom: 36
-        }}>
+        <p className="animate-in delay-2" style={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'var(--text-body)', maxWidth: 800, marginBottom: 32 }}>
           There are <strong style={{ color: 'var(--text-primary)' }}>250,000+ SMB manufacturers</strong> in the US alone.
           They produce over a third of industrial output. And almost none of them have a real-time, connected
-          view of what is happening inside their own factory.
+          view of what is happening inside their own factory &mdash; let alone a system that helps them design new lines,
+          simulate changes before committing capital, or coordinate automation.
         </p>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 36 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 32 }}>
           {[
             { num: '250', prefix: '', suffix: 'K+', label: 'SMB Manufacturers', sub: 'US market alone', delay: 300 },
             { num: '90', prefix: '$', suffix: 'B+', label: 'Addressable Market', sub: 'Industrial IoT + AI software', delay: 500 },
@@ -591,12 +580,11 @@ function OpportunitySlide() {
             </div>
           ))}
         </div>
-
         <div className="callout animate-in delay-6">
           <div className="callout-label">The Gap</div>
           <p>
-            The enterprise players — <strong style={{ color: 'var(--text-primary)' }}>Siemens, Rockwell, PTC</strong> — are building for Fortune 500 budgets and 18-month implementation cycles.
-            The IoT dashboard vendors visualize data but can't reason over it. The gap in the middle is <strong style={{ color: 'var(--amber-light)' }}>massive, underserved, and ready</strong>.
+            Enterprise players &mdash; <strong style={{ color: 'var(--text-primary)' }}>Siemens, Rockwell, PTC, NVIDIA Omniverse</strong> &mdash; are building powerful full-lifecycle platforms for Fortune 500 budgets.
+            IoT dashboard vendors visualize data but cannot reason over it. The gap in the middle is <strong style={{ color: 'var(--amber-light)' }}>massive, underserved, and ready</strong>.
           </p>
         </div>
       </div>
@@ -604,71 +592,71 @@ function OpportunitySlide() {
   );
 }
 
-// ─── Problem Slide ───
+// ═══════════════════ SLIDE 3: PROBLEM ═══════════════════
 function ProblemSlide() {
   const problems = [
-    { label: 'Late Detection', desc: 'Defects are caught at the end of the line — after the damage is done' },
+    { label: 'Late Detection', desc: 'Defects are caught at the end of the line \u2014 after the damage is done' },
     { label: 'Surprise Failures', desc: 'Equipment fails without warning, costing hours of unplanned downtime' },
     { label: 'Manual Root-Cause', desc: 'Root-cause analysis means hours of manual digging across disconnected systems' },
+    { label: 'Blind Deployment', desc: 'New line design and robot deployment is trial-and-error \u2014 expensive, slow, and risky' },
     { label: 'Knowledge Loss', desc: 'When experienced operators retire, critical process knowledge disappears with them' },
   ];
-
   return (
     <div className="slide-container">
       <div className="slide-inner">
         <div className="section-label animate-in">The Problem</div>
-
-        <p className="animate-in delay-1" style={{
-          fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--text-body)',
-          maxWidth: 800, marginBottom: 32
-        }}>
-          SMB factories already generate enormous amounts of data. Machine sensors. Quality logs.
-          Maintenance records. Operator notes. The data exists — it's just <strong style={{ color: 'var(--text-primary)' }}>fragmented, siloed, and invisible</strong>.
+        <p className="animate-in delay-1" style={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'var(--text-body)', maxWidth: 800, marginBottom: 8 }}>
+          SMB factories generate enormous amounts of data. Machine sensors. Quality logs. Maintenance records.
+          The data exists &mdash; it is just <strong style={{ color: 'var(--text-primary)' }}>fragmented, siloed, and invisible</strong>.
+          Worse, when these factories want to add a new line, reconfigure layout, or deploy a robot, they have <strong style={{ color: 'var(--text-primary)' }}>no way to simulate the impact</strong> before spending capital.
         </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 32 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, margin: '20px 0 20px' }}>
           {problems.map((p, i) => (
-            <div key={i} className={`problem-item animate-left delay-${i + 3}`}>
+            <div key={i} className={`problem-item animate-left delay-${i + 2}`}>
               <span className="problem-arrow">&rarr;</span>
               <div>
                 <span style={{ fontWeight: 600, color: 'var(--text-primary)', marginRight: 8 }}>{p.label}:</span>
-                <span style={{ color: 'var(--text-body)', fontSize: '0.92rem', lineHeight: 1.6 }}>{p.desc}</span>
+                <span style={{ color: 'var(--text-body)', fontSize: '0.9rem', lineHeight: 1.6 }}>{p.desc}</span>
               </div>
             </div>
           ))}
         </div>
-
-        <div className="callout animate-in delay-7">
+        <div className="callout animate-in delay-8">
           <div className="callout-label">The Real Cost</div>
-          <p>
-            It's not just inefficiency. It's the inability to scale automation, improve quality systematically,
-            or compete with manufacturers who <em>do</em> have connected intelligence. SMBs are losing ground — not because they lack data,
-            but because <strong style={{ color: 'var(--amber-light)' }}>their data doesn't work for them</strong>.
-          </p>
+          <p>SMBs are losing ground &mdash; not because they lack data, but because they have <strong style={{ color: 'var(--amber-light)' }}>no system that connects design, simulation, and operations</strong> into a single feedback loop.</p>
         </div>
       </div>
     </div>
   );
 }
 
-// ─── Solution Slide ───
-function SolutionSlide() {
-  const features = [
+// ═══════════════════ SLIDE 4: LIFECYCLE ═══════════════════
+function LifecycleSlide() {
+  const [activeQuad, setActiveQuad] = useState(0);
+  const quads = [
     {
-      icon: "\u2693", title: 'Data Capture',
-      desc: 'Plug into existing machines, PLCs, sensors, and operator tools via open protocols. No rip-and-replace. Under $50K to connect a full production line.'
+      title: 'DESIGN', subtitle: 'Plan before you spend',
+      color: 'var(--green)', bg: 'rgba(52,211,153,0.1)', border: 'rgba(52,211,153,0.25)',
+      icon: '\u{1F4D0}',
+      bullets: ['Factory layout modeling', 'Production line configuration', 'Robot placement & reach analysis', 'Sensor placement planning', 'BOM integration']
     },
     {
-      icon: "\u{1F9E0}", title: 'Factory Memory',
-      desc: 'A knowledge graph that links every event to its context. The institutional memory your factory never had — queryable in seconds, not hours.'
+      title: 'BUILD', subtitle: 'Connect & deploy fast',
+      color: 'var(--blue-glow)', bg: 'rgba(59,139,235,0.1)', border: 'rgba(59,139,235,0.25)',
+      icon: '\u{1F527}',
+      bullets: ['Plug-in sensor kits (MQTT/OPC-UA)', 'Edge compute deployment', 'Factory Memory initialization', 'PLC/SCADA integration', '60\u201390 day time-to-value']
     },
     {
-      icon: "\u26A1", title: 'AI Intelligence',
-      desc: 'LLM-powered agents that reason over live factory data using manufacturing domain knowledge. No model training. No GPU. No data science team.'
+      title: 'SIMULATE', subtitle: 'Test before you commit',
+      color: 'var(--purple)', bg: 'rgba(167,139,250,0.1)', border: 'rgba(167,139,250,0.25)',
+      icon: '\u{1F52C}',
+      bullets: ['What-if scenario modeling', 'Throughput simulation', 'Robot path validation', 'Process parameter optimization', 'New product line impact analysis']
     },
     {
-      icon: "\u{1F3AF}", title: 'Action Layer',
-      desc: 'Alerts, shift summaries, scheduling support. Growing into cobot coordination, vision-based inspection, and closed-loop process control.'
+      title: 'OPERATE', subtitle: 'Run smarter every day',
+      color: 'var(--amber-light)', bg: 'rgba(217,95,0,0.1)', border: 'rgba(217,95,0,0.25)',
+      icon: '\u{1F3AF}',
+      bullets: ['Real-time quality intelligence', 'Predictive equipment health', 'AI shift summaries & alerts', 'Cobot task coordination', 'Closed-loop process control']
     },
   ];
 
@@ -676,76 +664,203 @@ function SolutionSlide() {
     <div className="slide-container">
       <div className="slide-inner">
         <div className="section-label animate-in">What We're Building</div>
-
-        <p className="animate-in delay-1" style={{
-          fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--text-body)',
-          maxWidth: 800, marginBottom: 12
-        }}>
-          A data-first, AI-enabled <strong style={{ color: 'var(--text-primary)' }}>operational twin</strong> for SMB manufacturing.
-          Not a dashboard. Not another IoT connector. A <strong style={{ color: 'var(--amber-light)' }}>factory intelligence layer</strong> that
-          sits on top of what factories already have — and makes it think.
+        <p className="animate-in delay-1" style={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'var(--text-body)', maxWidth: 820, marginBottom: 8 }}>
+          A full-lifecycle AI platform for SMB manufacturing: <strong style={{ color: 'var(--text-primary)' }}>Design &rarr; Build &rarr; Simulate &rarr; Operate</strong>.
+          Not just a monitoring dashboard. Not just a digital twin. A factory intelligence layer that covers the entire journey.
         </p>
 
-        <p className="animate-in delay-2" style={{
-          fontSize: '0.92rem', lineHeight: 1.7, color: 'var(--slate)',
-          maxWidth: 800, marginBottom: 36
-        }}>
-          The core asset is <em>Factory Memory</em>: a living knowledge graph that links every production event
-          to its full context — machine, operator, shift, material lot, process parameters, quality outcome.
-          Once that layer exists, everything else becomes possible.
-        </p>
+        {/* Flow bar */}
+        <div className="lifecycle-flow animate-in delay-2">
+          {quads.map((q, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <span className="flow-arrow">&rarr;</span>}
+              <div
+                className="flow-step"
+                style={{
+                  background: activeQuad === i ? q.bg : 'transparent',
+                  borderColor: activeQuad === i ? q.border : 'rgba(138,154,181,0.15)',
+                  color: activeQuad === i ? q.color : 'var(--slate)',
+                }}
+                onClick={() => setActiveQuad(i)}
+              >
+                {q.title}
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 18 }}>
-          {features.map((f, i) => (
-            <div key={i} className={`feature-card animate-scale delay-${i + 3}`}>
-              <div className="feature-icon">{f.icon}</div>
-              <div className="feature-title">{f.title}</div>
-              <div className="feature-desc">{f.desc}</div>
+        {/* Quadrant grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+          {quads.map((q, i) => (
+            <div
+              key={i}
+              className={`quad-card animate-scale delay-${i + 3} ${activeQuad === i ? 'active' : ''}`}
+              onClick={() => setActiveQuad(i)}
+              style={activeQuad === i ? { borderColor: q.border, boxShadow: `0 0 24px ${q.bg}` } : {}}
+            >
+              <div className="quad-header">
+                <div className="quad-icon" style={{ background: q.bg, border: `1px solid ${q.border}` }}>
+                  {q.icon}
+                </div>
+                <div className="quad-title" style={activeQuad === i ? { color: q.color } : {}}>{q.title}</div>
+              </div>
+              <div className="quad-subtitle">{q.subtitle}</div>
+              <ul className="quad-bullets">
+                {q.bullets.map((b, j) => <li key={j}>{b}</li>)}
+              </ul>
             </div>
           ))}
+        </div>
+
+        <p className="animate-fade delay-8" style={{ fontSize: '0.85rem', color: 'var(--slate)', marginTop: 20, textAlign: 'center', fontStyle: 'italic' }}>
+          Each quadrant delivers standalone value. A factory can start anywhere and expand across the platform.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════ SLIDE 5: FACTORY MEMORY ═══════════════════
+function FactoryMemorySlide() {
+  const uses = [
+    { label: 'For Design', desc: 'Historical data tells you what actually worked \u2014 not what you thought would work', color: 'var(--green)' },
+    { label: 'For Build', desc: 'Every sensor, PLC, and data source is registered as a node \u2014 deployment becomes a graph, not a spreadsheet', color: 'var(--blue-glow)' },
+    { label: 'For Simulate', desc: 'Real production data feeds the simulation \u2014 not theoretical assumptions', color: 'var(--purple)' },
+    { label: 'For Operate', desc: 'AI agents reason over live data with full historical context \u2014 sub-second root-cause analysis', color: 'var(--amber-light)' },
+  ];
+
+  return (
+    <div className="slide-container" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(59,139,235,0.08), transparent 60%)' }}>
+      <div className="slide-inner">
+        <div className="section-label animate-in">The Core Asset</div>
+        <h2 className="font-display animate-in delay-1" style={{ fontSize: '2rem', marginBottom: 12, fontWeight: 400 }}>
+          Factory Memory
+        </h2>
+        <p className="animate-in delay-2" style={{ fontSize: '1rem', lineHeight: 1.8, color: 'var(--text-body)', maxWidth: 780, marginBottom: 32 }}>
+          At the center of every quadrant is Factory Memory &mdash; a living knowledge graph that links every production event to its full context:
+          machine, operator, shift, material lot, process parameters, quality outcome. It is the <strong style={{ color: 'var(--text-primary)' }}>institutional memory your factory never had</strong>.
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 14, marginBottom: 28 }}>
+          {uses.map((u, i) => (
+            <div key={i} className={`feature-card animate-left delay-${i + 3}`} style={{ padding: 22 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: u.color, boxShadow: `0 0 10px ${u.color}` }} />
+                <span style={{ fontWeight: 600, color: u.color, fontSize: '0.9rem' }}>{u.label}</span>
+              </div>
+              <p style={{ fontSize: '0.88rem', lineHeight: 1.65, color: 'var(--text-body)' }}>{u.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="callout animate-in delay-7">
+          <div className="callout-label">No AI Team Required</div>
+          <p>
+            The AI does not require custom model training, GPU infrastructure, or a data science team. Pre-trained LLMs serve as the reasoning engine,
+            augmented with manufacturing-specific skills and domain rules. The intelligence comes from <strong style={{ color: 'var(--amber-light)' }}>data architecture and agent design</strong> &mdash; not training pipelines.
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-// ─── Why Now Slide ───
+// ═══════════════════ SLIDE 6: WHAT WE DEPLOY ═══════════════════
+function DeploySlide() {
+  const hw = [
+    'Edge Gateway', 'Vibration Sensors', 'Power Monitors',
+    'Thermal Cameras', 'Vision Cameras', 'I/O Adapters', 'Network Switch'
+  ];
+  const sw = [
+    'Data Ingestion', 'Factory Memory', 'Vector Search',
+    'AI Reasoning Engine', 'Edge Analytics', 'Simulation Engine',
+    'Visualization Layer', 'Deployment & Ops'
+  ];
+
+  return (
+    <div className="slide-container">
+      <div className="slide-inner">
+        <div className="section-label animate-in">What We Actually Deploy</div>
+        <p className="animate-in delay-1" style={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'var(--text-body)', maxWidth: 750, marginBottom: 28 }}>
+          This is not a slide deck. This is a <strong style={{ color: 'var(--text-primary)' }}>real system with real components</strong>.
+          Here is exactly what goes into a factory on Day 1.
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
+          {/* Hardware */}
+          <div className="animate-left delay-2">
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16,
+              fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem',
+              letterSpacing: '0.15em', color: 'var(--cyan)', textTransform: 'uppercase'
+            }}>
+              <div style={{ width: 4, height: 18, background: 'var(--cyan)', borderRadius: 2 }} />
+              Hardware Stack
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {hw.map((item, i) => (
+                <div key={i} className={`stack-item animate-left delay-${Math.min(i + 3, 8)}`}>
+                  <div className="stack-dot" style={{ background: 'var(--cyan)', boxShadow: '0 0 8px rgba(34,211,238,0.4)' }} />
+                  <span style={{ fontSize: '0.88rem', color: 'var(--text-body)' }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Software */}
+          <div className="animate-left delay-3">
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16,
+              fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem',
+              letterSpacing: '0.15em', color: 'var(--purple)', textTransform: 'uppercase'
+            }}>
+              <div style={{ width: 4, height: 18, background: 'var(--purple)', borderRadius: 2 }} />
+              Software Stack
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {sw.map((item, i) => (
+                <div key={i} className={`stack-item animate-left delay-${Math.min(i + 4, 9)}`}>
+                  <div className="stack-dot" style={{ background: 'var(--purple)', boxShadow: '0 0 8px rgba(167,139,250,0.4)' }} />
+                  <span style={{ fontSize: '0.88rem', color: 'var(--text-body)' }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="callout animate-in delay-8" style={{ marginTop: 28 }}>
+          <div className="callout-label">Day 1 Deployment</div>
+          <p>
+            Full single-line deployment: <span className="revenue-highlight">under $50K hardware</span> + <span className="revenue-highlight">60&ndash;90 days to live</span>.
+            No rip-and-replace. No custom integration. Plugs into what the factory already has.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════ SLIDE 7: WHY NOW ═══════════════════
 function WhyNowSlide() {
   const reasons = [
-    {
-      title: 'LLMs crossed the threshold',
-      desc: 'Reasoning-capable models can now operate as manufacturing agents without any custom training — eliminating the data science bottleneck that killed previous generations of industrial AI startups.'
-    },
-    {
-      title: 'Edge compute collapsed in cost',
-      desc: 'Instrumenting a full production line now costs under $50K, down from $500K+ a decade ago.'
-    },
-    {
-      title: 'The talent gap is accelerating',
-      desc: 'SMB manufacturers are losing experienced operators faster than they can hire — making knowledge capture an existential issue, not a nice-to-have.'
-    },
-    {
-      title: 'Category leaders not yet defined',
-      desc: 'The industrial AI market is at the same inflection point cloud SaaS was in 2010 — category leaders are not yet defined in the SMB segment.'
-    },
+    { title: 'LLMs crossed the threshold', desc: 'Reasoning-capable models can now operate as manufacturing agents without any custom training \u2014 eliminating the data science bottleneck that killed previous generations of industrial AI startups.' },
+    { title: 'Edge compute collapsed in cost', desc: 'A full-capability edge gateway costs under $1,000; instrumenting a full production line is now under $50K, down from $500K+ a decade ago.' },
+    { title: 'The talent gap is accelerating', desc: 'SMB manufacturers are losing experienced operators faster than they can hire \u2014 making knowledge capture an existential issue, not a nice-to-have.' },
+    { title: 'Simulation became accessible', desc: 'Physics simulation engines (NVIDIA Isaac, Gazebo) are now open and cloud-native \u2014 what used to require a dedicated simulation team can run as a platform service.' },
   ];
 
   return (
     <div className="slide-container">
       <div className="slide-inner">
         <div className="section-label animate-in">Why Now</div>
-
-        <h2 className="font-display animate-in delay-1" style={{
-          fontSize: '1.8rem', marginBottom: 36, fontWeight: 400
-        }}>
+        <h2 className="font-display animate-in delay-1" style={{ fontSize: '1.8rem', marginBottom: 32, fontWeight: 400 }}>
           Four converging forces<br />
           <span style={{ color: 'var(--amber-light)' }}>make this the moment.</span>
         </h2>
-
         <div style={{ maxWidth: 750 }}>
           {reasons.map((r, i) => (
             <div key={i} className={`why-item animate-left delay-${i + 3}`}>
-              <div className="why-dot" style={{ animationDelay: `${i * 0.2}s` }} />
+              <div className="why-dot" />
               <div>
                 <div className="why-title">{r.title}</div>
                 <div className="why-desc">{r.desc}</div>
@@ -753,21 +868,23 @@ function WhyNowSlide() {
             </div>
           ))}
         </div>
+        <p className="animate-fade delay-8" style={{ fontSize: '0.88rem', color: 'var(--slate)', marginTop: 24, fontStyle: 'italic' }}>
+          We are not late to the digital twin market. We are early to the segment that matters most &mdash; and we are building it independently, on our own terms.
+        </p>
       </div>
     </div>
   );
 }
 
-// ─── Business Model Slide ───
+// ═══════════════════ SLIDE 8: BUSINESS MODEL ═══════════════════
 function BusinessModelSlide() {
   const [activeLayer, setActiveLayer] = useState(0);
-
   const layers = [
     {
       num: '01', title: 'Platform SaaS', subtitle: 'The Foundation',
       content: (
         <>
-          <p>Monthly subscription per production line. Includes Factory Memory, core AI agents, and dashboards.</p>
+          <p>Monthly subscription per production line. Includes Factory Memory, core AI agents, simulation access, and dashboards.</p>
           <p>Target <span className="revenue-highlight">$3,000 - $6,000 / line / month</span>. Start with one line, expand across the facility. NRR target: &gt;120%.</p>
         </>
       )
@@ -776,8 +893,8 @@ function BusinessModelSlide() {
       num: '02', title: 'Hardware Partnership Network', subtitle: 'The Marketplace',
       content: (
         <>
-          <p>Our platform sees exactly what every factory needs before they do — which machines are degrading, which processes are bottlenecked.</p>
-          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Certified integrations:</strong> UR, Doosan, Fanuc — performance-based referral fees on every cobot placed</span></div>
+          <p>Our platform sees what every factory needs before they do &mdash; which machines are degrading, where a cobot would eliminate the highest-cost manual task.</p>
+          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Certified integrations:</strong> UR, Doosan, Fanuc &mdash; performance-based referral fees on every cobot placed</span></div>
           <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Sensor bundles:</strong> Pre-certified sensor kits sold through our deployment workflow</span></div>
           <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>"AI-Ready" certification:</strong> Hardware vendors pay for native Factory Memory compatibility</span></div>
         </>
@@ -788,7 +905,7 @@ function BusinessModelSlide() {
       content: (
         <>
           <p>Cross-factory anonymized benchmarks that no competitor can replicate.</p>
-          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Benchmarking subscriptions:</strong> See how your performance compares to anonymized peers</span></div>
+          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Benchmarking subscriptions:</strong> Compare performance to anonymized peers</span></div>
           <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Insurance partnerships:</strong> Premium reductions for platform-connected factories</span></div>
           <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Supply chain intelligence:</strong> Aggregate demand signals as a feed for suppliers</span></div>
         </>
@@ -799,8 +916,8 @@ function BusinessModelSlide() {
       content: (
         <>
           <p>Third-party developers build and sell agents on top of the platform. Quality agents, energy optimizers, lean scheduling agents.</p>
-          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Revenue share:</strong> 30% platform take — the App Store model for factory intelligence</span></div>
-          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Enterprise upsell:</strong> Custom agents for larger manufacturers — high-margin services</span></div>
+          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Revenue share:</strong> 30% platform take &mdash; the App Store model for factory intelligence</span></div>
+          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Enterprise upsell:</strong> Custom agents for larger manufacturers &mdash; high-margin services</span></div>
         </>
       )
     },
@@ -810,19 +927,13 @@ function BusinessModelSlide() {
     <div className="slide-container">
       <div className="slide-inner">
         <div className="section-label animate-in">Business Model</div>
-
-        <p className="animate-in delay-1" style={{
-          fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-body)',
-          maxWidth: 750, marginBottom: 28
-        }}>
-          We are building a <strong style={{ color: 'var(--text-primary)' }}>platform business</strong> — not a software vendor.
+        <p className="animate-in delay-1" style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 750, marginBottom: 24 }}>
+          We are building a <strong style={{ color: 'var(--text-primary)' }}>platform business</strong> &mdash; not a software vendor.
           The factory intelligence layer becomes the operating system of the SMB factory floor.
         </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
           {layers.map((layer, i) => (
-            <div
-              key={i}
+            <div key={i}
               className={`biz-layer animate-in delay-${i + 2} ${activeLayer === i ? 'active' : ''}`}
               onClick={() => setActiveLayer(activeLayer === i ? -1 : i)}
             >
@@ -840,12 +951,11 @@ function BusinessModelSlide() {
             </div>
           ))}
         </div>
-
         <div className="callout animate-in delay-7">
           <div className="callout-label">Unit Economics</div>
           <p>
             A single mid-size factory with 5 lines, 2 cobot placements, and benchmarking access represents{' '}
-            <span className="revenue-highlight">$30K - $50K ARR</span> — before marketplace and network revenue.
+            <span className="revenue-highlight">$30K - $50K ARR</span> &mdash; before marketplace and network revenue.
             At 500 factories, platform revenue alone exceeds <span className="revenue-highlight">$15M ARR</span>.
           </p>
         </div>
@@ -854,47 +964,28 @@ function BusinessModelSlide() {
   );
 }
 
-// ─── GTM Slide ───
+// ═══════════════════ SLIDE 9: GTM ═══════════════════
 function GTMSlide() {
   const steps = [
-    {
-      num: '01', title: 'Beachhead',
-      desc: 'Technical Response as the first live reference factory — a real proof point, not a demo environment.'
-    },
-    {
-      num: '02', title: 'Land & Expand',
-      desc: 'One production line as the entry point. Every line, every facility, every peer factory in the network is expansion revenue with near-zero incremental cost.'
-    },
-    {
-      num: '03', title: 'Partner-Led Growth',
-      desc: 'Automation integrators, cobot distributors, and equipment dealers become our sales force — they already have trusted relationships inside every SMB factory.'
-    },
-    {
-      num: '04', title: 'Network Pull',
-      desc: 'Every factory that joins makes the benchmarking and intelligence network more valuable for everyone already on it — compounding growth with no additional sales effort.'
-    },
+    { num: '01', title: 'Beachhead', desc: 'Technical Response as the first live reference factory \u2014 a real proof point, not a demo environment.' },
+    { num: '02', title: 'Land & Expand', desc: 'One production line as the entry point. Every line, every facility, every peer factory is expansion revenue with near-zero incremental cost.' },
+    { num: '03', title: 'Partner-Led Growth', desc: 'Automation integrators, cobot distributors, and equipment dealers become our sales force \u2014 they already have trusted relationships inside every SMB factory.' },
+    { num: '04', title: 'Network Pull', desc: 'Every factory that joins makes the benchmarking and intelligence network more valuable for everyone already on it \u2014 compounding growth with no additional sales effort.' },
   ];
 
   return (
     <div className="slide-container">
       <div className="slide-inner">
         <div className="section-label animate-in">Go-To-Market</div>
-
-        <p className="animate-in delay-1" style={{
-          fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-body)',
-          maxWidth: 750, marginBottom: 12
-        }}>
+        <p className="animate-in delay-1" style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 750, marginBottom: 12 }}>
           Any factory that makes things is our customer. Food and beverage. Electronics. Metal fabrication.
-          Medical devices. Automotive supply chain. The pain is <strong style={{ color: 'var(--text-primary)' }}>universal across manufacturing</strong>.
+          Medical devices. Automotive supply chain. The pain &mdash; fragmented data, reactive operations,
+          inability to simulate or scale automation &mdash; is <strong style={{ color: 'var(--text-primary)' }}>universal across manufacturing</strong>.
         </p>
-        <p className="animate-in delay-2" style={{
-          fontSize: '0.92rem', lineHeight: 1.7, color: 'var(--slate)',
-          maxWidth: 750, marginBottom: 36
-        }}>
+        <p className="animate-in delay-2" style={{ fontSize: '0.92rem', lineHeight: 1.7, color: 'var(--slate)', maxWidth: 750, marginBottom: 32 }}>
           We are not solving a niche problem. We are solving the foundational infrastructure problem of every
           factory that has never been able to afford enterprise intelligence.
         </p>
-
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
           {steps.map((s, i) => (
             <div key={i} className={`gtm-step animate-scale delay-${i + 3}`}>
@@ -911,51 +1002,42 @@ function GTMSlide() {
   );
 }
 
-// ─── Endgame Slide ───
+// ═══════════════════ SLIDE 10: ENDGAME ═══════════════════
 function EndgameSlide() {
   return (
     <div className="slide-container" style={{ background: 'radial-gradient(ellipse at 60% 50%, rgba(217,95,0,0.06), transparent 60%)' }}>
       <div className="slide-inner" style={{ maxWidth: 800 }}>
         <div className="section-label animate-in">The Endgame</div>
-
-        <div className="endgame-quote animate-in delay-2" style={{ marginBottom: 32 }}>
+        <div className="endgame-quote animate-in delay-2" style={{ marginBottom: 28 }}>
           The factory floor is the last major economic surface that has never been truly connected.
         </div>
-
-        <p className="animate-in delay-3" style={{
-          fontSize: '1rem', lineHeight: 1.8, color: 'var(--text-body)', marginBottom: 24
-        }}>
-          Enterprise manufacturers have had this layer for decades — it is why they outcompete on quality,
+        <p className="animate-in delay-3" style={{ fontSize: '1rem', lineHeight: 1.8, color: 'var(--text-body)', marginBottom: 20 }}>
+          Enterprise manufacturers have had this layer for decades &mdash; it is why they outcompete on quality,
           cost, and speed. We are bringing that same capability to the <strong style={{ color: 'var(--text-primary)' }}>other 98% of manufacturers</strong> who build the physical world.
         </p>
-
-        <p className="animate-in delay-4" style={{
-          fontSize: '0.95rem', lineHeight: 1.8, color: 'var(--text-body)', marginBottom: 36
-        }}>
-          In five years, every SMB factory in our network shares a common intelligence layer. Machines talk
-          to each other across facilities. A bearing failure pattern spotted in a Michigan stamping plant
-          updates the maintenance model in every similar machine across the network — <strong style={{ color: 'var(--amber-light)' }}>automatically</strong>.
-          Robots get smarter every time a new factory connects. The platform gets more valuable the larger
-          it grows, and the larger it grows, the harder it becomes to displace.
+        <p className="animate-in delay-4" style={{ fontSize: '0.92rem', lineHeight: 1.8, color: 'var(--text-body)', marginBottom: 32 }}>
+          In five years, every SMB factory in our network shares a common intelligence layer. A manufacturer
+          can design a new line, simulate it against real production data from 500 peer factories, deploy it
+          with a pre-certified sensor kit, and have AI agents optimizing output within <strong style={{ color: 'var(--amber-light)' }}>weeks &mdash; not years</strong>.
+          Machines talk to each other across facilities. A bearing failure pattern spotted in Michigan
+          updates the maintenance model everywhere. Robots get smarter every time a new factory connects.
         </p>
-
         <div className="animate-in delay-5" style={{
-          textAlign: 'center', padding: '40px 0 20px',
+          textAlign: 'center', padding: '36px 0 16px',
           borderTop: '1px solid rgba(59,139,235,0.1)'
         }}>
-          <div className="font-display" style={{ fontSize: '1.6rem', marginBottom: 8, color: 'var(--text-primary)' }}>
+          <div className="font-display" style={{ fontSize: '1.5rem', marginBottom: 8, color: 'var(--text-primary)' }}>
             We are not building a digital twin tool.
           </div>
           <div className="font-display" style={{
             fontSize: '2rem', color: 'var(--amber-light)',
             textShadow: '0 0 40px rgba(217,95,0,0.3)'
           }}>
-            We are building the intelligence layer<br />that manufacturing runs on.
+            We are building the operating system<br />that manufacturing runs on.
           </div>
         </div>
-
         <div className="animate-fade delay-7" style={{
-          textAlign: 'center', marginTop: 48,
+          textAlign: 'center', marginTop: 44,
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: '0.85rem', color: 'var(--amber)', letterSpacing: '0.1em'
         }}>
@@ -966,7 +1048,7 @@ function EndgameSlide() {
   );
 }
 
-// ─── Main App ───
+// ═══════════════════ MAIN APP ═══════════════════
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slideKey, setSlideKey] = useState(0);
@@ -997,8 +1079,9 @@ function App() {
   }, [next, prev]);
 
   const slideComponents = [
-    HeroSlide, OpportunitySlide, ProblemSlide, SolutionSlide,
-    WhyNowSlide, BusinessModelSlide, GTMSlide, EndgameSlide
+    HeroSlide, OpportunitySlide, ProblemSlide, LifecycleSlide,
+    FactoryMemorySlide, DeploySlide, WhyNowSlide,
+    BusinessModelSlide, GTMSlide, EndgameSlide
   ];
 
   const SlideComponent = slideComponents[currentSlide];
@@ -1008,33 +1091,22 @@ function App() {
     <>
       <div className="noise-overlay" />
       <div className="grid-bg" />
-
-      {/* Progress bar */}
       <div className="progress-bar" style={{ width: `${progress}%` }} />
 
-      {/* Side nav dots */}
       <div className="nav-dots">
         {SLIDES.map((s, i) => (
-          <button
-            key={i}
-            className={`nav-dot ${i === currentSlide ? 'active' : ''}`}
-            onClick={() => goTo(i)}
-          >
+          <button key={i} className={`nav-dot ${i === currentSlide ? 'active' : ''}`} onClick={() => goTo(i)}>
             <span className="nav-dot-label">{s.label}</span>
           </button>
         ))}
       </div>
 
-      {/* Slide content */}
       <div key={slideKey} style={{ height: '100%', width: '100%' }}>
         <SlideComponent />
       </div>
 
-      {/* Bottom navigation */}
       <div className="bottom-nav">
-        <button className="nav-btn" onClick={prev} disabled={currentSlide === 0}>
-          &larr; Back
-        </button>
+        <button className="nav-btn" onClick={prev} disabled={currentSlide === 0}>&larr; Back</button>
         <div className="slide-counter">
           {String(currentSlide + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
           <span style={{ margin: '0 12px', opacity: 0.3 }}>|</span>
