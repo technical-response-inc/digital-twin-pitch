@@ -638,13 +638,13 @@ function LifecycleSlide() {
       title: 'DESIGN', subtitle: 'Plan before you spend',
       color: 'var(--green)', bg: 'rgba(52,211,153,0.1)', border: 'rgba(52,211,153,0.25)',
       icon: '\u{1F4D0}',
-      bullets: ['Factory layout modeling', 'Production line configuration', 'Robot placement & reach analysis', 'Sensor placement planning', 'BOM integration']
+      bullets: ['Factory layout modeling', 'Production line configuration', 'Robot placement & reach analysis', 'Camera placement planning', 'BOM integration']
     },
     {
       title: 'BUILD', subtitle: 'Connect & deploy fast',
       color: 'var(--blue-glow)', bg: 'rgba(59,139,235,0.1)', border: 'rgba(59,139,235,0.25)',
       icon: '\u{1F527}',
-      bullets: ['Plug-in sensor kits (MQTT/OPC-UA)', 'Edge compute deployment', 'Factory Memory initialization', 'PLC/SCADA integration', '60\u201390 day time-to-value']
+      bullets: ['Camera + edge AI deployment', 'Edge compute deployment', 'Factory Memory initialization', 'PLC/SCADA integration', '60\u201390 day time-to-value']
     },
     {
       title: 'SIMULATE', subtitle: 'Test before you commit',
@@ -724,7 +724,7 @@ function LifecycleSlide() {
 function FactoryMemorySlide() {
   const uses = [
     { label: 'For Design', desc: 'Historical data tells you what actually worked \u2014 not what you thought would work', color: 'var(--green)' },
-    { label: 'For Build', desc: 'Every sensor, PLC, and data source is registered as a node \u2014 deployment becomes a graph, not a spreadsheet', color: 'var(--blue-glow)' },
+    { label: 'For Build', desc: 'Every camera, PLC, and data source is registered as a node \u2014 deployment becomes a graph, not a spreadsheet', color: 'var(--blue-glow)' },
     { label: 'For Simulate', desc: 'Real production data feeds the simulation \u2014 not theoretical assumptions', color: 'var(--purple)' },
     { label: 'For Operate', desc: 'AI agents reason over live data with full historical context \u2014 sub-second root-cause analysis', color: 'var(--amber-light)' },
   ];
@@ -768,11 +768,10 @@ function FactoryMemorySlide() {
 // ═══════════════════ SLIDE 6: WHAT WE DEPLOY ═══════════════════
 function DeploySlide() {
   const hw = [
-    'Edge Gateway', 'Vibration Sensors', 'Power Monitors',
-    'Thermal Cameras', 'Vision Cameras', 'I/O Adapters', 'Network Switch'
+    'Industrial Cameras', 'Edge AI Gateway', 'I/O Adapters', 'Network Switch'
   ];
   const sw = [
-    'Data Ingestion', 'Factory Memory', 'Vector Search',
+    'Computer Vision Engine', 'Data Ingestion', 'Factory Memory', 'Vector Search',
     'AI Reasoning Engine', 'Edge Analytics', 'Simulation Engine',
     'Visualization Layer', 'Deployment & Ops'
   ];
@@ -781,9 +780,10 @@ function DeploySlide() {
     <div className="slide-container">
       <div className="slide-inner">
         <div className="section-label animate-in">What We Actually Deploy</div>
-        <p className="animate-in delay-1" style={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'var(--text-body)', maxWidth: 750, marginBottom: 28 }}>
+        <p className="animate-in delay-1" style={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'var(--text-body)', maxWidth: 780, marginBottom: 28 }}>
           This is not a slide deck. This is a <strong style={{ color: 'var(--text-primary)' }}>real system with real components</strong>.
-          Here is exactly what goes into a factory on Day 1.
+          Our approach is <strong style={{ color: 'var(--amber-light)' }}>camera-first</strong>: instead of wiring dozens of dedicated sensors per machine,
+          we capture operational data through industrial cameras and edge AI vision &mdash; dramatically reducing hardware complexity, installation time, and cost.
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
@@ -831,8 +831,8 @@ function DeploySlide() {
         <div className="callout animate-in delay-8" style={{ marginTop: 28 }}>
           <div className="callout-label">Day 1 Deployment</div>
           <p>
-            Full single-line deployment: <span className="revenue-highlight">under $50K hardware</span> + <span className="revenue-highlight">60&ndash;90 days to live</span>.
-            No rip-and-replace. No custom integration. Plugs into what the factory already has.
+            Full single-line deployment: <span className="revenue-highlight">under $20K hardware</span> + <span className="revenue-highlight">30&ndash;60 days to live</span>.
+            Camera-first means fewer parts, faster install, lower risk. No rip-and-replace. No custom integration. Plugs into what the factory already has.
           </p>
         </div>
       </div>
@@ -844,7 +844,8 @@ function DeploySlide() {
 function WhyNowSlide() {
   const reasons = [
     { title: 'LLMs crossed the threshold', desc: 'Reasoning-capable models can now operate as manufacturing agents without any custom training \u2014 eliminating the data science bottleneck that killed previous generations of industrial AI startups.' },
-    { title: 'Edge compute collapsed in cost', desc: 'A full-capability edge gateway costs under $1,000; instrumenting a full production line is now under $50K, down from $500K+ a decade ago.' },
+    { title: 'Computer vision replaced sensors', desc: 'A single industrial camera can now capture what used to require dozens of dedicated vibration, thermal, and power sensors \u2014 reducing hardware cost and deployment time by an order of magnitude.' },
+    { title: 'Edge compute collapsed in cost', desc: 'A camera-based monitoring setup costs a fraction of legacy sensor arrays; instrumenting a full production line is now under $20K, down from $500K+ a decade ago.' },
     { title: 'The talent gap is accelerating', desc: 'SMB manufacturers are losing experienced operators faster than they can hire \u2014 making knowledge capture an existential issue, not a nice-to-have.' },
     { title: 'Simulation became accessible', desc: 'Physics simulation engines (NVIDIA Isaac, Gazebo) are now open and cloud-native \u2014 what used to require a dedicated simulation team can run as a platform service.' },
   ];
@@ -854,7 +855,7 @@ function WhyNowSlide() {
       <div className="slide-inner">
         <div className="section-label animate-in">Why Now</div>
         <h2 className="font-display animate-in delay-1" style={{ fontSize: '1.8rem', marginBottom: 32, fontWeight: 400 }}>
-          Four converging forces<br />
+          Five converging forces<br />
           <span style={{ color: 'var(--amber-light)' }}>make this the moment.</span>
         </h2>
         <div style={{ maxWidth: 750 }}>
@@ -895,7 +896,7 @@ function BusinessModelSlide() {
         <>
           <p>Our platform sees what every factory needs before they do &mdash; which machines are degrading, where a cobot would eliminate the highest-cost manual task.</p>
           <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Certified integrations:</strong> UR, Doosan, Fanuc &mdash; performance-based referral fees on every cobot placed</span></div>
-          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Sensor bundles:</strong> Pre-certified sensor kits sold through our deployment workflow</span></div>
+          <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>Camera & edge AI bundles:</strong> Pre-certified camera kits sold through our deployment workflow</span></div>
           <div className="bullet"><span className="bullet-icon">&rarr;</span><span><strong style={{ color: 'var(--text-primary)' }}>"AI-Ready" certification:</strong> Hardware vendors pay for native Factory Memory compatibility</span></div>
         </>
       )
@@ -1018,8 +1019,8 @@ function EndgameSlide() {
         <p className="animate-in delay-4" style={{ fontSize: '0.92rem', lineHeight: 1.8, color: 'var(--text-body)', marginBottom: 32 }}>
           In five years, every SMB factory in our network shares a common intelligence layer. A manufacturer
           can design a new line, simulate it against real production data from 500 peer factories, deploy it
-          with a pre-certified sensor kit, and have AI agents optimizing output within <strong style={{ color: 'var(--amber-light)' }}>weeks &mdash; not years</strong>.
-          Machines talk to each other across facilities. A bearing failure pattern spotted in Michigan
+          with a pre-certified camera kit, and have AI agents optimizing output within <strong style={{ color: 'var(--amber-light)' }}>weeks &mdash; not years</strong>.
+          Machines talk to each other across facilities. A failure pattern spotted in Michigan
           updates the maintenance model everywhere. Robots get smarter every time a new factory connects.
         </p>
         <div className="animate-in delay-5" style={{
